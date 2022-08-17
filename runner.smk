@@ -25,7 +25,7 @@ SmallJobMem = config["SmallJobMem"]
 # Parse the samples and read files
 include: "rules/samples.smk"
 dictReads = parseSamples(CSV)
-
+SAMPLE = list(dictReads.keys())
 
 dictReadsPlasmids = plasmidSamplesFromCsv(CSV)
 PLASMIDS_SAMPLES = list(dictReadsPlasmids.keys())
