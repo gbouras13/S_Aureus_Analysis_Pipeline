@@ -36,21 +36,21 @@ def plasmidSamplesFromCsv(csvFile):
     with open(csvFile,'r') as csv:
         for line in csv:
             l = line.strip().split(',')
-            if len(l) == 3:
-                outDict[l[0]] = {}
-                if os.path.isfile(l[1]):
-                    outDict[l[0]]['Chromosome'] = l[1]
-                else:
-                    sys.stderr.write("\n"
-                                     f"    FATAL: Error parsing {csvFile}. The chromosome fasta file \n"
-                                     f"    {l[1]} \n"
-                                     "    does not exist. Check formatting, and that \n" 
-                                     "    file names and file paths are correct.\n"
-                                     "\n")
-                    sys.exit(1)
-                # if  plasmids files exists
-                if os.path.isfile(l[2]):
-                    outDict[l[0]]['Plasmids'] = l[2]
+            # get only the lines without "None"
+            if l[2] != "None":
+                if len(l) == 3:
+                    outDict[l[0]] = {}
+                    if os.path.isfile(l[1]) and os.path.isfile(l[2]):
+                        outDict[l[0]]['Chromosome'] = l[1]
+                        outDict[l[0]]['Plasmids'] = l[2]
+                    else:
+                        sys.stderr.write("\n"
+                                        f"    FATAL: Error parsing {csvFile}. The chromosome fasta file \n"
+                                        f"    {l[1]} \n"
+                                        "    does not exist. Check formatting, and that \n" 
+                                        "    file names and file paths are correct.\n"
+                                        "\n")
+                        sys.exit(1)
     return outDict
 
 def nonPlasmidSamplesFromCsv(csvFile):
@@ -59,11 +59,13 @@ def nonPlasmidSamplesFromCsv(csvFile):
     with open(csvFile,'r') as csv:
         for line in csv:
             l = line.strip().split(',')
-            if len(l) == 3:
-                outDict[l[0]] = {}
-                # plasmid samples need to be "None"
-                if os.path.isfile(l[1]) and l[2] == "None":
-                    outDict[l[0]]['Chromosome'] = l[1]
+            # only those with none
+            if l[2] == "None":
+                if len(l) == 3:
+                    outDict[l[0]] = {}
+                    # plasmid samples need to be "None"
+                    if os.path.isfile(l[1]) and l[2] == "None":
+                        outDict[l[0]]['Chromosome'] = l[1]
     return outDict
 
 
