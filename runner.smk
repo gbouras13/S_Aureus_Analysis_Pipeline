@@ -29,9 +29,10 @@ SAMPLES = list(dictReads.keys())
 #print(SAMPLES)
 
 # get the samples that have plasmids, or not as dicts https://stackoverflow.com/questions/16099557/splitting-dict-by-value-of-one-of-the-keys
+print(dictReads)
 No_Plasmids_dict = [ { key : dictReads[key][idx] for key in dictReads.keys() }  for idx, x in enumerate(dictReads["Plasmids"]) if x == "None" ]
 NO_PLASMIDS_SAMPLES = list(No_Plasmids_dict.keys())
-Plasmids_dict = [ { key : dictReads[key][idx] for key in dictReads.keys() }  for idx, x in enumerate(dictReads["Plasmids"]) if x == "None" ]
+Plasmids_dict = [ { key : dictReads[key][idx] for key in dictReads.keys() }  for idx, x in enumerate(dictReads["Plasmids"]) if x != "None" ]
 PLASMIDS_SAMPLES = list(Plasmids_dict.keys())
 
 # Import rules and functions
