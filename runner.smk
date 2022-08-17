@@ -37,6 +37,7 @@ NO_PLASMIDS_SAMPLES = list(dictReadsPlasmids.keys())
 # Import rules and functions
 include: "rules/targets.smk"
 include: "rules/annotate_chromosome.smk"
+include: "rules/annotate_plasmid.smk"
 include: "rules/phispy.smk"
 
 rule all:
