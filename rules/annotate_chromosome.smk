@@ -22,7 +22,7 @@ rule prokka_chromosome:
         prokka --cpus {threads} --genus Staphylococcus --usegenus --outdir {params[0]} --prefix {wildcards.sample} {input[0]} --force
         """
 
-rule move_gff:
+rule move_gff_chromosome:
     input:
         os.path.join(PROKKA,"{sample}","{sample}.gff")
     output:

@@ -22,7 +22,7 @@ rule prokka_plasmid:
         prokka --cpus {threads} --genus Staphylococcus --usegenus --outdir {params[0]} --prefix {wildcards.plasmids_sample} {input[0]} --force
         """
 
-rule move_gff:
+rule move_gff_plasmid:
     input:
         os.path.join(PROKKA,"{plasmids_sample}_plasmid","{plasmids_sample}.gff")
     output:
@@ -36,7 +36,7 @@ rule move_gff:
         cp {input[0]} {output[0]} 
         """
 
-rule aggr_prokka_chromosome:
+rule aggr_prokka_plasmid:
     """Aggregate."""
     input:
         expand(os.path.join(PLASMID_GFFS,"{plasmids_sample}.gff"), plasmids_sample = PLASMIDS_SAMPLES)
