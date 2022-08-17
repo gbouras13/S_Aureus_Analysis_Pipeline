@@ -30,6 +30,42 @@ def samplesFromCsv(csvFile):
                     outDict[l[0]]['Plasmids'] = "None"
     return outDict
 
+def plasmidSamplesFromCsv(csvFile):
+    """Read plasmid and files from a CSV"""
+    outDict = {}
+    with open(csvFile,'r') as csv:
+        for line in csv:
+            l = line.strip().split(',')
+            if len(l) == 3:
+                outDict[l[0]] = {}
+                if os.path.isfile(l[1]):
+                    outDict[l[0]]['Chromosome'] = l[1]
+                else:
+                    sys.stderr.write("\n"
+                                     f"    FATAL: Error parsing {csvFile}. The chromosome fasta file \n"
+                                     f"    {l[1]} \n"
+                                     "    does not exist. Check formatting, and that \n" 
+                                     "    file names and file paths are correct.\n"
+                                     "\n")
+                    sys.exit(1)
+                # if  plasmids
+                if os.path.isfile(l[2]):
+                    outDict[l[0]]['Plasmids'] = l[2]
+    return outDict
+
+def nonPlasmidSamplesFromCsv(csvFile):
+    """Read plasmid and files from a CSV"""
+    outDict = {}
+    with open(csvFile,'r') as csv:
+        for line in csv:
+            l = line.strip().split(',')
+            if len(l) == 3:
+                outDict[l[0]] = {}
+                if os.path.isfile(l[1]) and !os.path.isfile(l[2]):
+                    outDict[l[0]]['Chromosome'] = l[1]
+    return outDict
+
+
 def parseSamples(csvfile):
     # for reading from directory
     #if os.path.isdir(readFileDir):
