@@ -1,5 +1,5 @@
 def get_plasmid(wildcards):
-    return Plasmids_dict[wildcards.plasmids_sample]["Plasmid"]
+    return dictReadsPlasmids[wildcards.plasmids_sample]["Plasmids"]
 
 rule prokka_plasmid:
     """Run prokka."""
