@@ -48,7 +48,7 @@ def plasmidSamplesFromCsv(csvFile):
                                      "    file names and file paths are correct.\n"
                                      "\n")
                     sys.exit(1)
-                # if  plasmids
+                # if  plasmids files exists
                 if os.path.isfile(l[2]):
                     outDict[l[0]]['Plasmids'] = l[2]
     return outDict
@@ -61,7 +61,8 @@ def nonPlasmidSamplesFromCsv(csvFile):
             l = line.strip().split(',')
             if len(l) == 3:
                 outDict[l[0]] = {}
-                if os.path.isfile(l[1]) and !os.path.isfile(l[2]):
+                # plasmid samples need to be "None"
+                if os.path.isfile(l[1]) and l[2] == "None":
                     outDict[l[0]]['Chromosome'] = l[1]
     return outDict
 
