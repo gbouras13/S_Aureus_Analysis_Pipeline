@@ -27,8 +27,6 @@ rule snippy:
         """
 
 
-        snippy-core --prefix core mysnps1 mysnps2 mysnps3 mysnps4 
-
 rule snippy_core:
     input:
         dirs = expand(os.path.join(SNIPPY, "{sample}"), sample = SAMPLES),
