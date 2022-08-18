@@ -3,7 +3,8 @@ rule panaroo:
     input:
         gffs = expand(os.path.join(CHROMOSOME_GFFS,"{sample}.gff"), sample = SAMPLES)
     output:
-        os.path.join(PANAROO, "gene_presence_absence.Rtab")
+        os.path.join(PANAROO, "gene_presence_absence.Rtab"),
+        os.path.join(PANAROO, "core_gene_alignment.aln")
     conda:
         os.path.join('..', 'envs','panaroo.yaml')
     params:
@@ -20,7 +21,8 @@ rule panaroo:
 rule aggr_panaroo:
     """Aggregate."""
     input:
-        os.path.join(PANAROO, "gene_presence_absence.Rtab")
+        os.path.join(PANAROO, "gene_presence_absence.Rtab"),
+        os.path.join(PANAROO, "core_gene_alignment.aln")
     output:
         os.path.join(LOGS, "aggr_panaroo.txt")
     threads:

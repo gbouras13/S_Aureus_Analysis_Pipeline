@@ -42,6 +42,7 @@ include: "rules/phispy.smk"
 include: "rules/annotate_reference.smk"
 include: "rules/snippy.smk"
 include: "rules/panaroo.smk"
+include: "rules/iqtree.smk"
 
 rule all:
     input:
