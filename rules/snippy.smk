@@ -31,7 +31,7 @@ rule snippy:
 rule snippy_core:
     input:
         dirs = expand(os.path.join(SNIPPY, "{sample}"), sample = SAMPLES),
-        input = expand(os.path.join(SNIPPY, "{sample}", "snps.txt"), sample = SAMPLES) 
+        input = expand(os.path.join(SNIPPY, "{sample}", "snps.txt"), sample = SAMPLES) ,
         ref = os.path.join(PROKKA,"NCTC_8325","NCTC_8325.gbk")
     output:
         os.path.join(SNIPPY, "core.vcf")
