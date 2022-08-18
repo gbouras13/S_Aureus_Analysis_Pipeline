@@ -23,7 +23,7 @@ rule snippy:
         mem_mb=BigJobMem
     shell:
         """
-        snippy --cpus {threads} --outdir {params} --ref {input[2]} --R1 {input[0]} --R2 {input[1]} 
+        snippy --cpus {threads} --outdir {params} --ref {input[2]} --R1 {input[0]} --R2 {input[1]}  --force
         """
 
 
