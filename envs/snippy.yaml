@@ -5,3 +5,4 @@ channels:
     - defaults
 dependencies:
     - snippy
+    - snpEff=5.0

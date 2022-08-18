@@ -11,7 +11,8 @@ rule snippy:
         get_input_r2,
         os.path.join(PROKKA,"NCTC_8325","NCTC_8325.gbk")
     output:
-        os.path.join(SNIPPY, "{sample}", "snps.txt")
+        os.path.join(SNIPPY, "{sample}", "snps.txt"),
+        directory(os.path.join(SNIPPY, "{sample}"))
     conda:
         os.path.join('..', 'envs','snippy.yaml')
     params:
@@ -22,8 +23,8 @@ rule snippy:
         mem_mb=BigJobMem
     shell:
         """
-        # so tmp dir
-        TMPDIR="/hpcfs/users/a1667917/tmp"
+        # https://github.com/tseemann/snippy/issues/508
+        # add snpEff=5.0 to yaml
         snippy --cpus {threads} --outdir {params} --ref {input[2]} --R1 {input[0]} --R2 {input[1]}  --force
         """
 
