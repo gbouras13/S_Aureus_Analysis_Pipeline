@@ -1,10 +1,7 @@
-def get_chromosome(wildcards):
-    return dictReads[wildcards.sample]["Chromosome"]
-
 rule phispy:
     """Run phispy."""
     input:
-        get_chromosome
+         os.path.join(PROKKA,"{sample}","{sample}.gbk")
     output:
         os.path.join(PHISPY,"{sample}", "prophage_coordinates.tsv"),
         os.path.join(PHISPY,"{sample}", "phage.fasta")
