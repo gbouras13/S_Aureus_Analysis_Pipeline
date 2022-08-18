@@ -15,7 +15,7 @@ rule pharokka:
         mem_mb=BigJobMem
     shell:
         """
-        pharokka.py -i {input} -o {params[0]} -d {params[1]} -t {threads}
+        pharokka.py -i {input} -o {params[0]} -d {params[1]} -t {threads} --force
         """
 
 rule aggr_pharokka:
