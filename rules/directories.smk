@@ -25,9 +25,9 @@ SNIPPY = os.path.join(OUTPUT, 'SNIPPY')
 PANAROO = os.path.join(OUTPUT, 'PANAROO')
 
 
-
-
-
+# needs to be created before snippy is run
+if not os.path.exists(SNIPPY):
+  os.makedirs(SNIPPY)
 
 
 
