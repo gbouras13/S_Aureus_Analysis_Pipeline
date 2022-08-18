@@ -44,6 +44,7 @@ include: "rules/annotate_reference.smk"
 include: "rules/snippy.smk"
 include: "rules/panaroo.smk"
 include: "rules/iqtree.smk"
+include: "rules/pharokka.smk"
 
 rule all:
     input:
