@@ -39,6 +39,8 @@ include: "rules/targets.smk"
 include: "rules/annotate_chromosome.smk"
 include: "rules/annotate_plasmid.smk"
 include: "rules/phispy.smk"
+include: "rules/annotate_reference.smk"
+include: "rules/snippy.smk"
 
 rule all:
     input:

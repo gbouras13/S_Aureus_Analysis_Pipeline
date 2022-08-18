@@ -1,7 +1,7 @@
-name: mlst
+name: snippy
 channels:
     - conda-forge
     - bioconda
     - defaults
 dependencies:
-    - mlst
+    - snippy
