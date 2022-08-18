@@ -3,6 +3,8 @@ Database and output locations for Hecatomb
 Ensures consistent variable names and file locations for the pipeline.
 """
 
+import os
+
 
 ### OUTPUT DIRECTORY
 if config['Output'] is None:
