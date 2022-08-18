@@ -32,10 +32,3 @@ rule aggr_iqtree:
         touch {output[0]}
         """
 
-
-
-
-
-
-
-iqtree -s core_gene_alignment.aln -pre core_tree -nt 8 -fast -m GTR
