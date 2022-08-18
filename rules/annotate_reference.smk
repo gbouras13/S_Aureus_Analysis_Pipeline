@@ -36,7 +36,7 @@ rule move_gff_reference:
 rule aggr_prokka_reference:
     """Aggregate."""
     input:
-        os.path.join(CHROMOSOME_GFFS,"NCTC_8325.gff ),
+        os.path.join(CHROMOSOME_GFFS,"NCTC_8325.gff" ),
         os.path.join(PROKKA,"NCTC_8325","NCTC_8325.gbk")
     output:
         os.path.join(LOGS, "aggr_prokka_reference.txt")
