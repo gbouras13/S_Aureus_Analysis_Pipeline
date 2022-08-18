@@ -41,6 +41,7 @@ include: "rules/annotate_plasmid.smk"
 include: "rules/phispy.smk"
 include: "rules/annotate_reference.smk"
 include: "rules/snippy.smk"
+include: "rules/panaroo.smk"
 
 rule all:
     input:

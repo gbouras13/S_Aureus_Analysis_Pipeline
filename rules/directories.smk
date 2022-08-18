@@ -22,7 +22,8 @@ PHISPY = os.path.join(OUTPUT, 'PHISPY')
 CHROMOSOME_GFFS = os.path.join(OUTPUT, 'CHROMOSOME_GFFS')
 PLASMID_GFFS = os.path.join(OUTPUT, 'PLASMID_GFFS')
 SNIPPY = os.path.join(OUTPUT, 'SNIPPY')
-ROARY = os.path.join(OUTPUT, 'CHROMOSOME_GFFS')
+PANAROO = os.path.join(OUTPUT, 'PANAROO')
+
 
 
 
