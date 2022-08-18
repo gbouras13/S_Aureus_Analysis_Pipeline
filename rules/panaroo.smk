@@ -1,7 +1,8 @@
 rule panaroo:
     """Run panaroo."""
     input:
-        gffs = expand(os.path.join(CHROMOSOME_GFFS,"{sample}.gff"), sample = SAMPLES)
+        gffs = expand(os.path.join(CHROMOSOME_GFFS,"{sample}.gff"), sample = SAMPLES),
+        ref = os.path.join(CHROMOSOME_GFFS,"NCTC_8325.gff")
     output:
         os.path.join(PANAROO, "gene_presence_absence.Rtab"),
         os.path.join(PANAROO, "core_gene_alignment.aln")
@@ -15,7 +16,7 @@ rule panaroo:
         mem_mb=BigJobMem
     shell:
         """
-        panaroo -i {input.gffs} -o {params.out_dir} --clean-mode strict -a core  --core_threshold 0.98 -t {threads}
+        panaroo -i {input.gffs} {input.ref} -o {params.out_dir} -a core  --core_threshold 0.98 -t {threads}
         """
 
 rule aggr_panaroo:

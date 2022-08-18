@@ -13,8 +13,9 @@ else:
     OUTPUT = config['Output']
 
 # REFERENCE_DIR
-
 REFERENCE = "Reference"
+# pharokka db
+PHAROKKA_DB="/hpcfs/users/a1667917/pharokka_db"
 
 ### OUTPUT DIRs
 LOGS = os.path.join(OUTPUT, 'LOGS')
@@ -25,7 +26,7 @@ CHROMOSOME_GFFS = os.path.join(OUTPUT, 'CHROMOSOME_GFFS')
 PLASMID_GFFS = os.path.join(OUTPUT, 'PLASMID_GFFS')
 SNIPPY = os.path.join(OUTPUT, 'SNIPPY')
 PANAROO = os.path.join(OUTPUT, 'PANAROO')
-
+PHAROKKA = os.path.join(OUTPUT, 'PHAROKKA')
 
 # needs to be created before snippy is run
 if not os.path.exists(SNIPPY):

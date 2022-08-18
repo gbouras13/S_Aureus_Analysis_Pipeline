@@ -34,6 +34,7 @@ dictReadsNoPlasmids = nonPlasmidSamplesFromCsv(CSV)
 NO_PLASMIDS_SAMPLES = list(dictReadsPlasmids.keys())
 
 
+
 # Import rules and functions
 include: "rules/targets.smk"
 include: "rules/annotate_chromosome.smk"
