@@ -9,18 +9,20 @@ rule isescan_chrom:
     input:
         get_chromosome
     output:
-        os.path.join(ISESCAN, "{sample}", "{sample}.fasta.csv")
+        os.path.join(ISESCAN, "{sample}", "{sample}.fasta.csv"),
+        os.path.join(ISESCAN, "{sample}", "{sample}.touch")
     conda:
         os.path.join('..', 'envs','isescan.yaml')
     params:
         os.path.join(ISESCAN, "{sample}")
     threads:
-        BigJobCpu
+        4
     resources:
         mem_mb=BigJobMem
     shell:
         """
-        isescan.py --seqfile {input[0]} --output results --nthread 2
+        isescan.py --seqfile {input[0]} --output results --nthread {threads}
+        touch {ouput[1]}
         """
 
 rule isescan_plas:
@@ -28,25 +30,27 @@ rule isescan_plas:
     input:
         get_plasmid
     output:
-        os.path.join(ISESCAN_PLAS, "{plasmids_sample}", "{plasmids_sample}.fasta.csv")
+        os.path.join(ISESCAN_PLAS, "{plasmids_sample}", "{plasmids_sample}.fasta.csv"),
+        os.path.join(ISESCAN_PLAS, "{plasmids_sample}", "{plasmids_sample}.touch")
     conda:
         os.path.join('..', 'envs','isescan.yaml')
     params:
         os.path.join(ISESCAN_PLAS, "{plasmids_sample}")
     threads:
-        BigJobCpu
+        4
     resources:
         mem_mb=BigJobMem
     shell:
         """
-        isescan.py --seqfile {input[0]} --output results --nthread 2
+        isescan.py --seqfile {input[0]} --output results --nthread {threads}
+        touch {ouput[1]}
         """
 
 rule aggr_isescan:
     """Aggregate."""
     input:
-        expand(os.path.join(ISESCAN_PLAS, "{plasmids_sample}", "{plasmids_sample}.fasta.csv"), plasmids_sample = PLASMIDS_SAMPLES),
-        expand(os.path.join(ISESCAN, "{sample}", "{sample}.fasta.csv"), sample = SAMPLES)
+        expand(os.path.join(ISESCAN_PLAS, "{plasmids_sample}", "{plasmids_sample}.touch"), plasmids_sample = PLASMIDS_SAMPLES),
+        expand(os.path.join(ISESCAN, "{sample}", "{sample}.touch"), sample = SAMPLES)
     output:
         os.path.join(LOGS, "aggr_isescan.txt")
     threads:
