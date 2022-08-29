@@ -20,7 +20,7 @@ rule isescan_chrom:
         mem_mb=BigJobMem
     shell:
         """
-        isescan.py --seqfile {input[0]} --output results --nthread {threads}
+        isescan.py --seqfile {input[0]} --output {params[0]} --nthread {threads}
         touch {output[0]}
         """
 
@@ -40,7 +40,7 @@ rule isescan_plas:
         mem_mb=BigJobMem
     shell:
         """
-        isescan.py --seqfile {input[0]} --output results --nthread {threads}
+        isescan.py --seqfile {input[0]} --output {params[0]} --nthread {threads}
         touch {output[0]}
         """
 
