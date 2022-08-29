@@ -22,7 +22,7 @@ rule isescan_chrom:
     shell:
         """
         isescan.py --seqfile {input[0]} --output results --nthread {threads}
-        touch {ouput[1]}
+        touch {output[1]}
         """
 
 rule isescan_plas:
@@ -43,7 +43,7 @@ rule isescan_plas:
     shell:
         """
         isescan.py --seqfile {input[0]} --output results --nthread {threads}
-        touch {ouput[1]}
+        touch {output[1]}
         """
 
 rule aggr_isescan:
