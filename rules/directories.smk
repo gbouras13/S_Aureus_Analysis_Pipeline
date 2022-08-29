@@ -27,6 +27,9 @@ PLASMID_GFFS = os.path.join(OUTPUT, 'PLASMID_GFFS')
 SNIPPY = os.path.join(OUTPUT, 'SNIPPY')
 PANAROO = os.path.join(OUTPUT, 'PANAROO')
 PHAROKKA = os.path.join(OUTPUT, 'PHAROKKA')
+IQTREE = os.path.join(OUTPUT, 'IQTREE')
+ISESCAN_PLAS = os.path.join(OUTPUT, 'ISESCAN_PLAS')
+ISESCAN = os.path.join(OUTPUT, 'ISESCAN')
 
 # needs to be created before snippy is run
 if not os.path.exists(SNIPPY):

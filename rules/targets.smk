@@ -9,7 +9,8 @@ TargetFiles = [
     os.path.join(LOGS, "aggr_phispy.txt"),
     os.path.join(LOGS, "aggr_prokka_reference.txt"),
     os.path.join(LOGS, "aggr_snippy.txt"),
-    os.path.join(LOGS, "aggr_panaroo.txt"),
+ #   os.path.join(LOGS, "aggr_panaroo.txt"),
     os.path.join(LOGS, "aggr_iqtree.txt"),
-    os.path.join(LOGS, "aggr_pharokka.txt")
+    os.path.join(LOGS, "aggr_pharokka.txt"),
+    os.path.join(LOGS, "aggr_isescan.txt")
 ]

@@ -14,3 +14,5 @@ BigJobMem: 32000
 BigJobCpu: 64       
 SmallJobMem: 4000
 
+Corealn: '/hpcfs/users/a1667917/S_Aureus_Analysis_Pipeline/core_gene_alignment.aln'
+

@@ -1,26 +1,28 @@
 rule iqtree:
     """Run iqtree."""
     input:
-        os.path.join(PANAROO, "core_gene_alignment.aln")
+        COREALN
     output:
-        os.path.join(PANAROO, "core_tree.treefile")
+        os.path.join(IQTREE, "core_gene_alignment.aln")
+        os.path.join(IQTREE, "core_gene_alignment.treefile")
     conda:
         os.path.join('..', 'envs','iqtree.yaml')
     params:
-        os.path.join(PANAROO, "core_tree")
+        os.path.join(IQTREE, "core_gene_alignment")
     threads:
-        BigJobCpu
+        64
     resources:
         mem_mb=BigJobMem
     shell:
         """
-        iqtree -s {input} -pre {params} -nt 8 -fast -m GTR
+        cp {input[0]} {output[0]}
+        iqtree -s {output[0]} -pre {params} -nt {threads} -fast -m GTR
         """
 
 rule aggr_iqtree:
     """Aggregate."""
     input:
-        os.path.join(PANAROO, "core_tree.treefile")
+        os.path.join(IQTREE, "core_gene_alignment.treefile")
     output:
         os.path.join(LOGS, "aggr_iqtree.txt")
     threads:

@@ -17,6 +17,7 @@ include: "rules/directories.smk"
 # get if needed
 CSV = config['csv']
 OUTPUT = config['Output']
+COREALN = config['Corealn']
 BigJobMem = config["BigJobMem"]
 BigJobCpu = config["BigJobCpu"]
 SmallJobMem = config["SmallJobMem"]
@@ -42,9 +43,11 @@ include: "rules/annotate_plasmid.smk"
 include: "rules/phispy.smk"
 include: "rules/annotate_reference.smk"
 include: "rules/snippy.smk"
-include: "rules/panaroo.smk"
+# won't install for some reason
+# include: "rules/panaroo.smk"
 include: "rules/iqtree.smk"
 include: "rules/pharokka.smk"
+include: "rules/isescan.smk"
 
 rule all:
     input:
