@@ -26,7 +26,7 @@ rule isescan_chrom:
 rule isescan_plas:
     """Run isescan on plasmids."""
     input:
-        get_chromosome
+        get_plasmid
     output:
         os.path.join(ISESCAN_PLAS, "{plasmids_sample}", "{plasmids_sample}.fasta.csv")
     conda:
