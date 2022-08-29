@@ -9,14 +9,13 @@ rule isescan_chrom:
     input:
         get_chromosome
     output:
-        os.path.join(ISESCAN, "{sample}", "{sample}.fasta.csv"),
         os.path.join(ISESCAN, "{sample}", "{sample}.touch")
     conda:
         os.path.join('..', 'envs','isescan.yaml')
     params:
         os.path.join(ISESCAN, "{sample}")
     threads:
-        4
+        8
     resources:
         mem_mb=BigJobMem
     shell:
@@ -30,14 +29,13 @@ rule isescan_plas:
     input:
         get_plasmid
     output:
-        os.path.join(ISESCAN_PLAS, "{plasmids_sample}", "{plasmids_sample}.fasta.csv"),
         os.path.join(ISESCAN_PLAS, "{plasmids_sample}", "{plasmids_sample}.touch")
     conda:
         os.path.join('..', 'envs','isescan.yaml')
     params:
         os.path.join(ISESCAN_PLAS, "{plasmids_sample}")
     threads:
-        4
+        2
     resources:
         mem_mb=BigJobMem
     shell:
