@@ -3,7 +3,7 @@ rule iqtree:
     input:
         COREALN
     output:
-        os.path.join(IQTREE, "core_gene_alignment.aln")
+        os.path.join(IQTREE, "core_gene_alignment.aln"),
         os.path.join(IQTREE, "core_gene_alignment.treefile")
     conda:
         os.path.join('..', 'envs','iqtree.yaml')
