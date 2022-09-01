@@ -36,11 +36,25 @@ rule move_gff_chromosome:
         cp {input[0]} {output[0]} 
         """
 
+rule move_gbk_chromosome:
+    input:
+        os.path.join(PROKKA,"{sample}","{sample}.gbk")
+    output:
+        os.path.join(CHROMOSOME_GBKS,"{sample}.gbk")
+    threads:
+        1
+    resources:
+        mem_mb=BigJobMem
+    shell:
+        """
+        cp {input[0]} {output[0]} 
+        """
+
 rule aggr_prokka_chromosome:
     """Aggregate."""
     input:
         expand(os.path.join(CHROMOSOME_GFFS,"{sample}.gff" ), sample = SAMPLES),
-        expand(os.path.join(PROKKA,"{sample}","{sample}.gbk"), sample = SAMPLES)
+        expand(os.path.join(CHROMOSOME_GBKS,"{sample}.gbk"), sample = SAMPLES)
     output:
         os.path.join(LOGS, "aggr_prokka_chromosome.txt")
     threads:
