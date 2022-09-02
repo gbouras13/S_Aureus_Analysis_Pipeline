@@ -2,7 +2,6 @@ def get_input_r1(wildcards):
     return dictReads[wildcards.sample]["T1_R1"]
 def get_input_r2(wildcards):
     return dictReads[wildcards.sample]["T1_R2"]
-
 def get_input_gbk(wildcards):
     return dictReads[wildcards.sample]["T0_gbk"]
 

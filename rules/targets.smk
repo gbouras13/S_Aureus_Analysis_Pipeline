@@ -16,5 +16,6 @@ TargetFiles = [
 ]
 
 GhaisTargetFiles = [
-    os.path.join(LOGS, "aggr_snippy_pair.txt")
+    os.path.join(LOGS, "aggr_snippy_pair.txt"),
+    os.path.join(LOGS, "aggr_nucdiff.txt")
 ]

@@ -32,6 +32,7 @@ SAMPLES = list(dictReads.keys())
 # Import rules and functions
 include: "rules/targets.smk"
 include: "rules/snippy_pair.smk"
+include: "rules/nucdiff.smk"
 
 rule all:
     input:
