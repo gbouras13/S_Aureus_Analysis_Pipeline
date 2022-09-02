@@ -14,3 +14,7 @@ TargetFiles = [
     os.path.join(LOGS, "aggr_pharokka.txt"),
     os.path.join(LOGS, "aggr_isescan.txt")
 ]
+
+GhaisTargetFiles = [
+    os.path.join(LOGS, "aggr_snippy_pair.txt")
+]

@@ -31,10 +31,14 @@ PHAROKKA = os.path.join(OUTPUT, 'PHAROKKA')
 IQTREE = os.path.join(OUTPUT, 'IQTREE')
 ISESCAN_PLAS = os.path.join(OUTPUT, 'ISESCAN_PLAS')
 ISESCAN = os.path.join(OUTPUT, 'ISESCAN')
+SNIPPY_PAIR = os.path.join(OUTPUT, 'SNIPPY_PAIR')
 
 # needs to be created before snippy is run
 if not os.path.exists(SNIPPY):
   os.makedirs(SNIPPY)
+
+if not os.path.exists(SNIPPY_PAIR):
+  os.makedirs(SNIPPY_PAIR)
 
 
 
