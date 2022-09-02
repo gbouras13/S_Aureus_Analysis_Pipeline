@@ -10,7 +10,7 @@ rule nucdiff:
         get_T0_fasta,
         get_T1_fasta
     output:
-        os.path.join(NUCDIFF, "{sample}", "{sample}_ref_struct.gff")
+        os.path.join(NUCDIFF, "{sample}", "results", "{sample}_ref_struct.gff")
     conda:
         os.path.join('..', 'envs','nucdiff.yaml')
     params:
@@ -27,7 +27,7 @@ rule nucdiff:
 rule aggr_nucdiff:
     """Aggregate."""
     input:
-        expand(os.path.join(NUCDIFF, "{sample}", "{sample}_ref_struct.gff"), sample = SAMPLES)
+        expand(os.path.join(NUCDIFF, "{sample}","results", "{sample}_ref_struct.gff"), sample = SAMPLES)
     output:
         os.path.join(LOGS, "aggr_nucdiff.txt")
     threads:
