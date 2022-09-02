@@ -111,15 +111,14 @@ def gessFromCsv(csvFile):
             l = line.strip().split(',')
             if len(l) == 8:
                 outDict[l[0]] = {}
-                if  os.path.isfile(l[4])  and os.path.isfile(l[5]) and os.path.isfile(l[6]) and os.path.isfile(l[7]) and os.path.isfile(l[8])  :
-                    outDict[l[0]]['Gess'] = l[1]
-                    outDict[l[0]]['T0'] = l[2]
-                    outDict[l[0]]['T1'] = l[3]
-                    outDict[l[0]]['T0_fasta'] = l[4]
-                    outDict[l[0]]['T1_fasta'] = l[5]
-                    outDict[l[0]]['T0_gbk'] = l[6]
-                    outDict[l[0]]['T1_R1'] = l[7]
-                    outDict[l[0]]['T1_R2'] = l[8]
+                if  os.path.isfile(l[3])  and os.path.isfile(l[4]) and os.path.isfile(l[5]) and os.path.isfile(l[6]) and os.path.isfile(l[7])  :
+                    outDict[l[0]]['T0'] = l[1]
+                    outDict[l[0]]['T1'] = l[2]
+                    outDict[l[0]]['T0_fasta'] = l[3]
+                    outDict[l[0]]['T1_fasta'] = l[4]
+                    outDict[l[0]]['T0_gbk'] = l[5]
+                    outDict[l[0]]['T1_R1'] = l[6]
+                    outDict[l[0]]['T1_R2'] = l[7]
                 else:
                     sys.stderr.write("\n"
                                      f"    FATAL: Error parsing {csvFile}. The  file \n"
