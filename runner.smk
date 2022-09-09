@@ -48,6 +48,7 @@ include: "rules/snippy.smk"
 include: "rules/iqtree.smk"
 include: "rules/pharokka.smk"
 include: "rules/isescan.smk"
+include: "rules/parse_prophages.smk"
 
 rule all:
     input:

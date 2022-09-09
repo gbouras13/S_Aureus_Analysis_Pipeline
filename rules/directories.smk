@@ -33,6 +33,7 @@ ISESCAN_PLAS = os.path.join(OUTPUT, 'ISESCAN_PLAS')
 ISESCAN = os.path.join(OUTPUT, 'ISESCAN')
 SNIPPY_PAIR = os.path.join(OUTPUT, 'SNIPPY_PAIR')
 NUCDIFF = os.path.join(OUTPUT, 'NUCDIFF')
+PROPHAGES = os.path.join(OUTPUT, 'PROPHAGES')
 
 # needs to be created before snippy is run
 if not os.path.exists(SNIPPY):
