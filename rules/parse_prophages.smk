@@ -1,6 +1,6 @@
 rule parse_plasmids:
     input:
-        os.path.join(INPUT, "{sample}.fasta")
+        os.path.join(PHISPY,"{sample}", "phage.fasta")
     output:
         os.path.join(PROPHAGES,"{sample}_touch.csv")
     threads:
