@@ -38,10 +38,9 @@ include: "rules/targets.smk"
 # annotate chromosomes
 include: "rules/annotate_chromosome.smk"
 include: "rules/annotate_reference.smk"
-# run phispy then pharokka on the predicted prophages
+# run phispy to predict  prophages then parse them to get 1 fasta per phage
 include: "rules/phispy.smk"
 include: "rules/parse_prophages.smk"
-include: "rules/pharokka.smk"
 # snippy vs the reference
 include: "rules/snippy.smk"
 

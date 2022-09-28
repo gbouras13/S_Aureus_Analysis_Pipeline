@@ -68,7 +68,8 @@ rule cluster_all_seqs:
     threads:
         BigJobCpu
     resources:
-        mem_mb=BigJobMem
+        mem_mb=BigJobMem,
+        time=120
     shell:
         """
         mmseqs easy-cluster {input[0]} {params[0]} {params[1]} --min-seq-id 0.95 -c 0.95
@@ -86,7 +87,8 @@ rule aggr_cluster:
     threads:
         1
     resources:
-        mem_mb=BigJobMem
+        mem_mb=4000,
+        time=3
     shell:
         """
         touch {output[0]}
