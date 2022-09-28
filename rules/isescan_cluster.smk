@@ -53,7 +53,6 @@ rule concat_fastas:
         cat {input} > {output}
         """
 
-
 rule cluster_all_seqs:
     """Run on all."""
     input:
@@ -99,99 +98,3 @@ rule aggr_cluster:
 
 
 
-
-
-
-
-
-
-
-rule concat_fnas:
-    """concate fnas"""
-    input:
-        isescan_fastas = expand(os.path.join(ISESCAN, "{sample}", "CHROMOSOME", "{sample}.fasta.is.fna") , sample = SAMPLES)
-    output:
-        out_fna = os.path.join(ISESCAN,"all_samples_isescan.fna" )
-    threads:
-        1
-    resources:
-        mem_mb=SmallJobMem, 
-        time=30
-    script:
-        '../scripts/combine_isescan_fnas.py'
-
-
-rule cluster_all_seqs:
-    """Run on all."""
-    input:
-        os.path.join(ISESCAN,"all_samples_isescan.fna" )
-    output:
-        os.path.join(ISESCAN_MMSEQS, "total_all_samples_ise_clustered.fasta"),
-        os.path.join(ISESCAN_MMSEQS, "total_all_samples_cluster.tsv")
-    conda:
-        os.path.join('..', 'envs','cluster.yaml')
-    params:
-        os.path.join(ISESCAN_MMSEQS,  "total_all_samples"),
-        os.path.join(ISESCAN_MMSEQS,  "total_all_samples_tmp")
-    threads:
-        BigJobCpu
-    resources:
-        mem_mb=BigJobMem
-    shell:
-        """
-        mmseqs easy-cluster {input[0]} {params[0]} {params[1]} --min-seq-id 0.95 -c 0.95
-        """
-
-rule collate_per_sample:
-    """Collate."""
-    input:
-        os.path.join(TMP,"{sample}_isfinder_parsed.csv"),
-        os.path.join(MMSEQS2,"{sample}_cluster.tsv" )
-    output:
-        os.path.join(RESULTS,"{sample}_final_per_is.csv"),
-        os.path.join(RESULTS,"{sample}_summary.csv")
-    conda:
-        os.path.join('..', 'envs','collate.yaml')
-    threads:
-        1
-    resources:
-        mem_mb=BigJobMem
-    script:
-        '../scripts/collate.py'
-
-rule aggr_collate:
-    """Aggregate."""
-    input:
-        expand(os.path.join(RESULTS,"{sample}_final_per_is.csv"), sample = SAMPLES_not_empty),
-        expand(os.path.join(RESULTS,"{sample}_summary.csv"), sample = SAMPLES_not_empty)
-    output:
-        os.path.join(LOGS, "aggr_collate.txt")
-    threads:
-        1
-    resources:
-        mem_mb=BigJobMem
-    shell:
-        """
-        touch {output[0]}
-        """
-
-
-
-
-#### aggregation rule
-
-rule aggr_cluster:
-    """Aggregate."""
-    input:
-        os.path.join(ISESCAN_MMSEQS, "total_all_samples_ise_clustered.fasta")
-    output:
-        os.path.join(LOGS, "aggr_isescan_cluster.txt")
-    threads:
-        1
-    resources:
-        mem_mb=SmallJobMem, 
-        time=5
-    shell:
-        """
-        touch {output[0]}
-        """
