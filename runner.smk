@@ -28,6 +28,10 @@ include: "rules/samples.smk"
 dictReads = parseSamples(CSV)
 SAMPLES = list(dictReads.keys())
 
+# gets the samples with plasmids for isescan of the plasmids
+dictReadsPlasmids = plasmidSamplesFromCsv(CSV)
+PLASMIDS_SAMPLES = list(dictReadsPlasmids.keys())
+
 
 # Import rules and functions
 include: "rules/targets.smk"
