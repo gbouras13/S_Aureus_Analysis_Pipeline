@@ -28,27 +28,30 @@ include: "rules/samples.smk"
 dictReads = parseSamples(CSV)
 SAMPLES = list(dictReads.keys())
 
-dictReadsPlasmids = plasmidSamplesFromCsv(CSV)
-PLASMIDS_SAMPLES = list(dictReadsPlasmids.keys())
-
-dictReadsNoPlasmids = nonPlasmidSamplesFromCsv(CSV)
-NO_PLASMIDS_SAMPLES = list(dictReadsPlasmids.keys())
-
-
 
 # Import rules and functions
 include: "rules/targets.smk"
+# annotate chromosomes
 include: "rules/annotate_chromosome.smk"
-include: "rules/annotate_plasmid.smk"
-include: "rules/phispy.smk"
 include: "rules/annotate_reference.smk"
+# run phispy then pharokka on the predicted prophages
+include: "rules/phispy.smk"
+include: "rules/parse_prophages.smk"
+include: "rules/pharokka.smk"
+# snippy vs the reference
 include: "rules/snippy.smk"
+
+# remove panaroo - run manually as it wont run on hpc for some reason
 # won't install for some reason
 # include: "rules/panaroo.smk"
+# try ppangolin?
+
+# iqtree based on panaroo alignment of core genome 
 include: "rules/iqtree.smk"
-include: "rules/pharokka.smk"
+
+# run isescan to look for IS elements and cluster them
 include: "rules/isescan.smk"
-include: "rules/parse_prophages.smk"
+include: 
 
 rule all:
     input:
