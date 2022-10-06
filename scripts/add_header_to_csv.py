@@ -5,7 +5,7 @@ import pandas as pd
 
 def add_header_col_csvs( is_finder_tsv, is_finder_tsv_out, sample):
 
-    is_df = pd.read_csv(is_finder_tsv, delimiter= ',', index_col=False, header=True)
+    is_df = pd.read_csv(is_finder_tsv, delimiter= ',', index_col=False, header=0)
 
     is_df['sample'] = sample
 
