@@ -9,7 +9,7 @@ def add_header_col_csvs( is_finder_tsv, is_finder_tsv_out, sample):
 
     is_df['sample'] = sample
 
-    is_df.to_csv(is_finder_tsv_out, sep=",")
+    is_df.to_csv(is_finder_tsv_out, sep=",",index=False)
 
 add_header_col_csvs(snakemake.input.tsv, snakemake.output.tsv,snakemake.wildcards.sample)
 

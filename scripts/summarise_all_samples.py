@@ -45,7 +45,7 @@ def collate_tsvs( is_finder_tsv_list, cluster_df, count_out_per_sample, counts_m
     count_df_p = merged_df[["sample", "representative_fasta", "count"]].drop_duplicates()
     count_df_p = count_df_p.pivot(index="sample", columns="representative_fasta", values="count").fillna(0)
     count_df_p['Total Insertion Sequences'] = np.sum(count_df_p,axis=1)
-    count_df_p.to_csv(counts_matrix, sep=",")
+    count_df_p.to_csv(counts_matrix, sep=",", index=False)
 
 
 collate_tsvs(snakemake.input.finals, snakemake.input.cluster, snakemake.output[0],snakemake.output[1])
