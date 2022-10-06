@@ -27,15 +27,13 @@ def collate_tsvs( is_finder_csv_list, cluster_df, count_out_per_sample, counts_m
     # to match mmseqs
     total_df['locus_tag'] = total_df['sample'] + "_contig_1_polypolish_" + total_df['isBegin'].astype(str) + "_" + total_df['isEnd'].astype(str) + "_" + total_df['strand'].astype(str)
 
-    # read in cluster from mmseqs
+    # read in cluster from mmseqs tsv file
     colnames_mmseqs=['representative_fasta', 'locus_tag']
-    mmseqs = pd.read_csv(cluster_df, delimiter= ',', index_col=False, header=None, names=colnames_mmseqs) 
+    mmseqs = pd.read_csv(cluster_df, delimiter= '\t', index_col=False, header=None, names=colnames_mmseqs) 
     
     total_df['locus_tag']=total_df['locus_tag'].astype(str)
     mmseqs['locus_tag']=mmseqs['locus_tag'].astype(str)
     
-    print(total_df)
-    print(mmseqs)
 
     merged_df = pd.merge(total_df, mmseqs, on='locus_tag')
     
