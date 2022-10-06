@@ -30,8 +30,11 @@ def collate_tsvs( is_finder_csv_list, cluster_df, count_out_per_sample, counts_m
     # read in cluster from mmseqs
     colnames_mmseqs=['representative_fasta', 'locus_tag']
     mmseqs = pd.read_csv(cluster_df, delimiter= ',', index_col=False, header=None, names=colnames_mmseqs) 
+    
+    total_df['locus_tag']=total_df['locus_tag'].astype(str)
+    mmseqs['locus_tag']=mmseqs['locus_tag'].astype(str)
 
-    merged_df = pd.merge(total_df, mmseqs)
+    merged_df = pd.merge(total_df, mmseqs, on='locus_tag')
 
     merged_df['count'] = merged_df.groupby(['sample','representative_fasta'])['representative_fasta'].transform('count')
 
