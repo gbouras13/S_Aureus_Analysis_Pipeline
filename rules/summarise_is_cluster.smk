@@ -3,7 +3,7 @@ rule add_sample_to_csv:
     input:
         tsv = os.path.join(ISESCAN, "{sample}", "CHROMOSOME", "{sample}.fasta.csv")
     output:
-        tsv = os.path.join(ISESCAN_CLEAN_TSVS,"{sample}_isescan.csv"),
+        tsv = os.path.join(ISESCAN_CLEAN_CSVS,"{sample}_isescan.csv"),
     conda:
         os.path.join('..', 'envs','scripts.yaml')
     threads:
@@ -17,7 +17,7 @@ rule add_sample_to_csv:
 rule summarise:
     """Collate."""
     input:
-        finals = expand(os.path.join(ISESCAN_CLEAN_TSVS,"{sample}_isescan.csv"), sample = SAMPLES),
+        finals = expand(os.path.join(ISESCAN_CLEAN_CSVS,"{sample}_isescan.csv"), sample = SAMPLES),
         cluster = os.path.join(ISESCAN_MMSEQS_ALL, "total_all_samples_cluster.tsv")
     output:
         os.path.join(ISESCAN_SUMMARY,"total_all_samples_final_per_is.csv"),

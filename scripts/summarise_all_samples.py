@@ -41,7 +41,7 @@ def collate_tsvs( is_finder_tsv_list, cluster_df, count_out_per_sample, counts_m
     count_df = merged_df[["sample", "representative_fasta","family", "cluster", "count"]].drop_duplicates()
     count_df.to_csv(count_out_per_sample, sep=",", index=False)
 
-    # count matrix
+    # count matrix total per sample
     count_df_p = merged_df[["sample", "representative_fasta", "count"]].drop_duplicates()
     count_df_p = count_df_p.pivot(index="sample", columns="representative_fasta", values="count").fillna(0)
     count_df_p['Total Insertion Sequences'] = np.sum(count_df_p,axis=1)
