@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 
 def read_is_csv(is_csv):
-    is_df = pd.read_csv(is_tsv, delimiter= ',', index_col=False, header=0)
+    is_df = pd.read_csv(is_csv, delimiter= ',', index_col=False, header=0)
     return is_df
 
 
