@@ -12,7 +12,7 @@ def read_is_csv(is_csv):
 
 def collate_tsvs( is_finder_csv_list, cluster_df, count_out_per_sample, counts_matrix):
 
-    tsvs = []
+    csvs = []
     l =is_finder_csv_list
 
     for a in l:
@@ -22,7 +22,7 @@ def collate_tsvs( is_finder_csv_list, cluster_df, count_out_per_sample, counts_m
         csvs.append(tmp_csv)
 
     # make into combined dataframe
-    total_df = pd.concat(tsvs,  ignore_index=True)
+    total_df = pd.concat(csvs,  ignore_index=True)
 
     # to match mmseqs
     total_df['locus_tag'] = total_df['sample'] + "_contig_1_polypolish_" + total_df['isBegin'].astype(str) + "_" + total_df['isEnd'].astype(str) + "_" + total_df['strand'].astype(str)
@@ -31,7 +31,7 @@ def collate_tsvs( is_finder_csv_list, cluster_df, count_out_per_sample, counts_m
     colnames_mmseqs=['representative_fasta', 'locus_tag']
     mmseqs = pd.read_csv(cluster_df, delimiter= ',', index_col=False, header=None, names=colnames_mmseqs) 
 
-    merged_df = pd.merge(tsvs, mmseqs)
+    merged_df = pd.merge(total_df, mmseqs)
 
     merged_df['count'] = merged_df.groupby(['sample','representative_fasta'])['representative_fasta'].transform('count')
 
