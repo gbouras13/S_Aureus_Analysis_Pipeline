@@ -55,6 +55,7 @@ include: "rules/iqtree.smk"
 # run isescan to look for IS elements and cluster them
 include: "rules/isescan.smk"
 include: "rules/isescan_cluster.smk"
+include: "rules/summarise_is_cluster.smk"
 
 rule all:
     input:
