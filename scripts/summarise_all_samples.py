@@ -3,23 +3,23 @@
 import pandas as pd
 import numpy as np
 
-def read_is_tsv(is_tsv):
-    is_df = pd.read_csv(is_tsv, delimiter= '\t', index_col=False, header=0)
+def read_is_csv(is_csv):
+    is_df = pd.read_csv(is_tsv, delimiter= ',', index_col=False, header=0)
     return is_df
 
 
 
 
-def collate_tsvs( is_finder_tsv_list, cluster_df, count_out_per_sample, counts_matrix):
+def collate_tsvs( is_finder_csv_list, cluster_df, count_out_per_sample, counts_matrix):
 
     tsvs = []
-    l =is_finder_tsv_list
+    l =is_finder_csv_list
 
     for a in l:
-        tmp_tsv = read_is_tsv(a)
+        tmp_csv = read_is_csv(a)
         # remove first row (from the file)
         # tmp_tsv = tmp_tsv.iloc[1: , :]
-        tsvs.append(tmp_tsv)
+        csvs.append(tmp_csv)
 
     # make into combined dataframe
     total_df = pd.concat(tsvs,  ignore_index=True)
@@ -29,7 +29,7 @@ def collate_tsvs( is_finder_tsv_list, cluster_df, count_out_per_sample, counts_m
 
     # read in cluster from mmseqs
     colnames_mmseqs=['representative_fasta', 'locus_tag']
-    mmseqs = pd.read_csv(cluster_df, delimiter= '\t', index_col=False, header=None, names=colnames_mmseqs) 
+    mmseqs = pd.read_csv(cluster_df, delimiter= ',', index_col=False, header=None, names=colnames_mmseqs) 
 
     merged_df = pd.merge(tsvs, mmseqs)
 
