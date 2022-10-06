@@ -3,54 +3,52 @@
 import pandas as pd
 import numpy as np
 
-def read_gff_csv(gff_csv):
-    colnames=['sample', 'contig',  'start', 'end',  'strand', 'locus_tag', 'IS_name', 'product', 'representative_fasta'] 
-    gff = pd.read_csv(gff_csv, delimiter= ',', index_col=False, header=None, names=colnames)
-    return gff
+def read_is_tsv(is_tsv):
+    is_df = pd.read_csv(is_tsv, delimiter= '\t', index_col=False, header=True)
+    return is_df
 
 
-def collate_gffs( is_finder_df_list, cluster_df, count_out_per_sample, counts_matrix):
 
-    gffs = []
-    l =is_finder_df_list
+
+def collate_tsvs( is_finder_tsv_list, cluster_df, count_out_per_sample, counts_matrix):
+
+    tsvs = []
+    l =is_finder_tsv_list
 
     for a in l:
-        tmp_gff = read_gff_csv(a)
+        tmp_tsv = read_is_tsv(a)
         # remove first row (from the file)
-        tmp_gff = tmp_gff.iloc[1: , :]
-        gffs.append(tmp_gff)
+        # tmp_tsv = tmp_tsv.iloc[1: , :]
+        tsvs.append(tmp_tsv)
 
     # make into combined dataframe
-    total_gff = pd.concat(gffs,  ignore_index=True)
+    total_df = pd.concat(tsvs,  ignore_index=True)
 
-    # drop representative_fasta 
-    total_gff = total_gff.drop(columns=['representative_fasta'])
+    # to match mmseqs
+    total_df['locus_tag'] = total_df['sample'] + "_contig_1_polypolish_" + total_df['isBegin'].astype(str) + "_" + total_df['isEnd'].astype(str) + "_" + total_df['strand'].astype(str)
 
-    # read in cluster
+    # read in cluster from mmseqs
     colnames_mmseqs=['representative_fasta', 'locus_tag']
     mmseqs = pd.read_csv(cluster_df, delimiter= '\t', index_col=False, header=None, names=colnames_mmseqs) 
 
-    merged = pd.merge(total_gff, mmseqs)
+    merged_df = pd.merge(tsvs, mmseqs)
 
-    merged['count'] = merged.groupby(['sample','representative_fasta'])['representative_fasta'].transform('count')
+    merged_df['count'] = merged_df.groupby(['sample','representative_fasta'])['representative_fasta'].transform('count')
+
 
     # final summaries
-
-    count_df = merged[["sample", "representative_fasta","IS_name", "product", "count"]].drop_duplicates()
-
+    # count per sample
+    count_df = merged_df[["sample", "representative_fasta","family", "cluster", "count"]].drop_duplicates()
     count_df.to_csv(count_out_per_sample, sep=",", index=False)
 
-    count_df_p = merged[["sample", "representative_fasta", "count"]].drop_duplicates()
+    # count matrix
+    count_df_p = merged_df[["sample", "representative_fasta", "count"]].drop_duplicates()
     count_df_p = count_df_p.pivot(index="sample", columns="representative_fasta", values="count").fillna(0)
     count_df_p['Total Insertion Sequences'] = np.sum(count_df_p,axis=1)
     count_df_p.to_csv(counts_matrix, sep=",")
 
 
-
-
-
-
-collate_gffs(snakemake.input.finals,snakemake.input.cluster, snakemake.output[0],snakemake.output[1])
+collate_tsvs(snakemake.input.finals, snakemake.input.cluster, snakemake.output[0],snakemake.output[1])
 
 
 

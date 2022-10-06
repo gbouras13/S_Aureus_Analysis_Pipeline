@@ -30,8 +30,8 @@ rule cluster_each_seq:
     threads:
         8
     resources:
-        mem_mb=32000,
-        time=30
+        mem_mb=16000,
+        time=10
     shell:
         """
         mmseqs easy-cluster {input[0]} {params[0]} {params[1]} --min-seq-id 0.95 -c 0.95

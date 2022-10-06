@@ -10,10 +10,10 @@ TargetFiles = [
     os.path.join(LOGS, "aggr_snippy.txt"),
  #   os.path.join(LOGS, "aggr_panaroo.txt"),
     os.path.join(LOGS, "aggr_iqtree.txt"),
-    os.path.join(LOGS, "aggr_pharokka.txt"),
     os.path.join(LOGS, "aggr_isescan.txt"),
     os.path.join(LOGS, "aggr_prophages.txt"),
     os.path.join(LOGS, "aggr_isescan_cluster.txt"),
+    os.path.join(LOGS, "aggr_is_summarise.txt")
 ]
 
 
