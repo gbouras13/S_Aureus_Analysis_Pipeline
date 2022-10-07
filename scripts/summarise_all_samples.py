@@ -34,6 +34,8 @@ def collate_tsvs( is_finder_csv_list, cluster_df, count_out_per_sample, counts_m
     total_df['locus_tag']=total_df['locus_tag'].astype(str)
     mmseqs['locus_tag']=mmseqs['locus_tag'].astype(str)
     
+    print(total_df)
+    print(mmseqs)
 
     merged_df = pd.merge(total_df, mmseqs, on='locus_tag')
     
