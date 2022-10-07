@@ -54,7 +54,8 @@ rule aggr_summarise:
     """Aggregate."""
     input:
         os.path.join(ISESCAN_SUMMARY,"total_all_samples_final_per_is.csv"),
-        os.path.join(ISESCAN_SUMMARY,"total_all_samples_summary.csv")
+        os.path.join(ISESCAN_SUMMARY,"total_all_samples_summary.csv"),
+        os.path.join(ISESCAN_SUMMARY,"total_all_samples_final_per_is_80.csv")
     output:
         os.path.join(LOGS, "aggr_is_summarise.txt")
     threads:
