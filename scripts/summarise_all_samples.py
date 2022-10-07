@@ -25,6 +25,10 @@ def collate_tsvs( is_finder_csv_list, cluster_df, count_out_per_sample, counts_m
     total_df = pd.concat(csvs,  ignore_index=True)
 
     # to match mmseqs
+
+    # blank if not + or - 
+    total_df.loc[~total_df['strand'].isin(['+', '-']), "strand"] = ""
+
     total_df['locus_tag'] = total_df['sample'] + "_contig_1_polypolish_" + total_df['isBegin'].astype(str) + "_" + total_df['isEnd'].astype(str) + "_" + total_df['strand']
 
     # read in cluster from mmseqs tsv file
