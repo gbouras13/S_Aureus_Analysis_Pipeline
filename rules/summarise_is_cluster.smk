@@ -32,14 +32,14 @@ rule summarise:
     script:
         '../scripts/summarise_all_samples.py'
 
-rule summarise:
+rule summarise_80:
     """Collate."""
     input:
         finals = expand(os.path.join(ISESCAN_CLEAN_CSVS,"{sample}_isescan.csv"), sample = SAMPLES),
-        cluster = os.path.join(ISESCAN_MMSEQS_ALL, "total_all_samples_cluster.tsv")
+        cluster = os.path.join(ISESCAN_MMSEQS_ALL, "total_all_samples_80_cluster.tsv")
     output:
-        os.path.join(ISESCAN_SUMMARY,"total_all_samples_final_per_is.csv"),
-        os.path.join(ISESCAN_SUMMARY,"total_all_samples_summary.csv")
+        os.path.join(ISESCAN_SUMMARY,"total_all_samples_final_per_is_80.csv"),
+        os.path.join(ISESCAN_SUMMARY,"total_all_samples_summary_80.csv")
     conda:
         os.path.join('..', 'envs','scripts.yaml')
     threads:
