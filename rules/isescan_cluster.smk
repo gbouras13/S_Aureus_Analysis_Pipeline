@@ -75,13 +75,39 @@ rule cluster_all_seqs:
         mmseqs easy-cluster {input[0]} {params[0]} {params[1]} --min-seq-id 0.95 -c 0.95
         """
 
+rule cluster_all_seqs_80:
+    """Run on all."""
+    input:
+        os.path.join(ISESCAN_CLEAN_FASTAS,"all_samples_isescan.fasta" )
+    output:
+        os.path.join(ISESCAN_MMSEQS_ALL, "total_all_samples_80_all_seqs.fasta"),
+        os.path.join(ISESCAN_MMSEQS_ALL, "total_all_samples_80_cluster.tsv")
+    conda:
+        os.path.join('..', 'envs','cluster.yaml')
+    params:
+        os.path.join(ISESCAN_MMSEQS_ALL,  "total_all_samples_80"),
+        os.path.join(ISESCAN_MMSEQS_ALL,  "total_all_samples_80_tmp")
+    threads:
+        BigJobCpu
+    resources:
+        mem_mb=BigJobMem,
+        time=120
+    shell:
+        """
+        mmseqs easy-cluster {input[0]} {params[0]} {params[1]} --min-seq-id 0.80 -c 0.80
+        """
+
+
 #### aggregation rule
 
 rule aggr_cluster:
     """Aggregate."""
     input:
         expand(os.path.join(ISESCAN_MMSEQS, "{sample}_cluster.tsv"), sample = SAMPLES),
-        os.path.join(ISESCAN_MMSEQS_ALL, "total_all_samples_all_seqs.fasta")
+        os.path.join(ISESCAN_MMSEQS_ALL, "total_all_samples_all_seqs.fasta"),
+        os.path.join(ISESCAN_MMSEQS_ALL, "total_all_samples_cluster.tsv"),
+        os.path.join(ISESCAN_MMSEQS_ALL, "total_all_samples_80_all_seqs.fasta"),
+        os.path.join(ISESCAN_MMSEQS_ALL, "total_all_samples_80_cluster.tsv")
     output:
         os.path.join(LOGS, "aggr_isescan_cluster.txt")
     threads:
