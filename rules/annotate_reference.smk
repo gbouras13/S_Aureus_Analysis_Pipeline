@@ -17,7 +17,7 @@ rule reference_bakta:
         mem_mb=BigJobMem
     shell:
         """
-        bakta --db {params[0]} --verbose --output {params[1]} --prefix NCTC_8325  --locus-tag NCTC_8325 --threads {threads} {input[0]} --gram +
+        bakta --db {params[0]} --verbose --output {params[1]} --prefix NCTC_8325  --locus-tag NCTC_8325 --threads {threads} {input[0]} 
         """
 
 rule move_gff_reference:

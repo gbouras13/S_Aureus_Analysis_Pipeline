@@ -89,7 +89,7 @@ rule bakta_chromosome:
         mem_mb=BigJobMem
     shell:
         """
-        bakta --db {params[0]} --verbose --output {params[1]} --prefix {wildcards.sample} --locus-tag {wildcards.sample} --threads {threads} {input[0]} --gram +
+        bakta --db {params[0]} --verbose --output {params[1]} --prefix {wildcards.sample} --locus-tag {wildcards.sample} --threads {threads} {input[0]} 
         """
 
 
