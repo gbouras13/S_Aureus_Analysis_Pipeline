@@ -16,7 +16,7 @@ rule panaroo:
         mem_mb=BigJobMem
     shell:
         """
-        panaroo -i {input.gffs} {input.ref} -o {params.out_dir} -a core --clean-mode strict --core_threshold 0.98 -t {threads} 
+        panaroo -i {input.gffs} {input.ref} -o {params.out_dir} -a core ---mode strict --core_threshold 0.98 -t {threads} 
         """
 
 rule aggr_panaroo:
