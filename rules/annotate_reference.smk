@@ -3,25 +3,26 @@ rule reference_prokka:
     input:
         os.path.join(REFERENCE,"NCTC_8325.fasta")
     output:
-        os.path.join(PROKKA,"NCTC_8325","NCTC_8325.gff"),
-        os.path.join(PROKKA,"NCTC_8325","NCTC_8325.ffn"),
-        os.path.join(PROKKA,"NCTC_8325","NCTC_8325.gbk")
+        os.path.join(BAKTA,"NCTC_8325","NCTC_8325.gff3"),
+        os.path.join(BAKTA,"NCTC_8325","NCTC_8325.ffn"),
+        os.path.join(BAKTA,"NCTC_8325","NCTC_8325.gbk")
     conda:
         os.path.join('..', 'envs','prokka.yaml')
     params:
-        os.path.join(PROKKA, "NCTC_8325")
+        BAKTA_DB,
+        os.path.join(BAKTA, "NCTC_8325")
     threads:
         BigJobCpu
     resources:
         mem_mb=BigJobMem
     shell:
         """
-        prokka --cpus {threads} --genus Staphylococcus --usegenus --outdir {params[0]} --prefix NCTC_8325 {input[0]} --force
+        bakta --db {params[0]} --verbose --output {params[1]} --prefix NCTC_8325  --locus-tag {wildcards.sample} -f --threads {threads} {input[0]}
         """
 
 rule move_gff_reference:
     input:
-        os.path.join(PROKKA,"NCTC_8325","NCTC_8325.gff")
+        os.path.join(BAKTA,"NCTC_8325","NCTC_8325.gff3")
     output:
         os.path.join(CHROMOSOME_GFFS,"NCTC_8325.gff")
     threads:
@@ -37,7 +38,7 @@ rule aggr_prokka_reference:
     """Aggregate."""
     input:
         os.path.join(CHROMOSOME_GFFS,"NCTC_8325.gff" ),
-        os.path.join(PROKKA,"NCTC_8325","NCTC_8325.gbk")
+        os.path.join(BAKTA,"NCTC_8325","NCTC_8325.gbk")
     output:
         os.path.join(LOGS, "aggr_prokka_reference.txt")
     threads:

@@ -18,6 +18,7 @@ include: "rules/directories.smk"
 CSV = config['csv']
 OUTPUT = config['Output']
 COREALN = config['Corealn']
+BAKTA_DB = config['BaktaDB']
 BigJobMem = config["BigJobMem"]
 BigJobCpu = config["BigJobCpu"]
 SmallJobMem = config["SmallJobMem"]
@@ -46,7 +47,7 @@ include: "rules/snippy.smk"
 
 # remove panaroo - run manually as it wont run on hpc for some reason
 # won't install for some reason
-# include: "rules/panaroo.smk"
+include: "rules/panaroo.smk"
 # try ppangolin?
 
 # iqtree based on panaroo alignment of core genome 

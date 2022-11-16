@@ -1,7 +1,7 @@
 rule iqtree:
     """Run iqtree."""
     input:
-        COREALN
+        os.path.join(PANAROO, "core_gene_alignment.aln")
     output:
         os.path.join(IQTREE, "core_gene_alignment.aln"),
         os.path.join(IQTREE, "core_gene_alignment.treefile")

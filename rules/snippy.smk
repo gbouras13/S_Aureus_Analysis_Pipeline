@@ -9,7 +9,7 @@ rule snippy:
     input:
         get_input_r1,
         get_input_r2,
-        os.path.join(PROKKA,"NCTC_8325","NCTC_8325.gbk")
+        os.path.join(BAKTA,"NCTC_8325","NCTC_8325.gbk")
     output:
         os.path.join(SNIPPY, "{sample}", "snps.txt"),
         directory(os.path.join(SNIPPY, "{sample}"))
@@ -33,7 +33,7 @@ rule snippy_core:
     input:
         dirs = expand(os.path.join(SNIPPY, "{sample}"), sample = SAMPLES),
         input = expand(os.path.join(SNIPPY, "{sample}", "snps.txt"), sample = SAMPLES) ,
-        ref = os.path.join(PROKKA,"NCTC_8325","NCTC_8325.gbk")
+        ref = os.path.join(BAKTA,"NCTC_8325","NCTC_8325.gbk")
     output:
         os.path.join(SNIPPY, "core.vcf")
     conda:

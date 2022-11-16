@@ -21,6 +21,7 @@ PHAROKKA_DB="/hpcfs/users/a1667917/pharokka_db"
 LOGS = os.path.join(OUTPUT, 'LOGS')
 TMP = os.path.join(OUTPUT, 'TMP')
 PROKKA = os.path.join(TMP, 'PROKKA')
+BAKTA = os.path.join(TMP, 'BAKTA')
 CHROMOSOME_GFFS = os.path.join(OUTPUT, 'CHROMOSOME_GFFS')
 CHROMOSOME_GBKS = os.path.join(OUTPUT, 'CHROMOSOME_GBKS')
 PLASMID_GFFS = os.path.join(OUTPUT, 'PLASMID_GFFS')
