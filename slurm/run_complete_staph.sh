@@ -30,7 +30,7 @@ conda activate snakemake_clean_env
 # --config csv=complete_metadata.csv Output=/hpcfs/users/a1667917/S_Aureus_Analysis_Pipeline/Output
 
 snakemake -c 1 -s runner.smk --use-conda  --conda-frontend conda --profile $PROF_DIR/bact_assembly  \
---config csv=complete_metadata.csv Output=/hpcfs/users/a1667917/S_Aureus_Analysis_Pipeline/Output
+--config csv=complete_metadata_new.csv Output=/hpcfs/users/a1667917/S_Aureus_Analysis_14_11_22
 
 
 conda deactivate
