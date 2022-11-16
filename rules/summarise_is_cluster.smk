@@ -1,7 +1,7 @@
 rule add_sample_to_csv:
     """Collate."""
     input:
-        tsv = os.path.join(ISESCAN, "{sample}", "CHROMOSOME", "{sample}.fasta.csv")
+        tsv = os.path.join(ISESCAN, "{sample}", "CHROMOSOME_POST_POLISHING", "{sample}.fasta.csv")
     output:
         tsv = os.path.join(ISESCAN_CLEAN_CSVS,"{sample}_isescan.csv"),
     conda:
