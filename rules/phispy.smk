@@ -1,7 +1,7 @@
 rule phispy:
     """Run phispy."""
     input:
-         os.path.join(BAKTA,"{sample}","{sample}.gbk")
+        os.path.join(CHROMOSOME_GBKS,"{sample}.gbk")
     output:
         os.path.join(PHISPY,"{sample}", "prophage_coordinates.tsv"),
         os.path.join(PHISPY,"{sample}", "phage.fasta")
