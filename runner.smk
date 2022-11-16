@@ -17,7 +17,7 @@ include: "rules/directories.smk"
 # get if needed
 CSV = config['csv']
 OUTPUT = config['Output']
-COREALN = config['Corealn']
+#COREALN = config['Corealn']
 BAKTA_DB = config['BaktaDB']
 BigJobMem = config["BigJobMem"]
 BigJobCpu = config["BigJobCpu"]
