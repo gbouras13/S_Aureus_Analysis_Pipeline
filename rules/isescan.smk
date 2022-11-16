@@ -10,8 +10,8 @@ rule isescan_chrom:
         get_chromosome
     output:
         os.path.join(ISESCAN, "{sample}", "{sample}.touch"),
-        os.path.join(ISESCAN, "{sample}", "CHROMOSOME", "{sample}.fasta.csv"), 
-        os.path.join(ISESCAN, "{sample}", "CHROMOSOME", "{sample}.fasta.is.fna") 
+        os.path.join(ISESCAN, "{sample}", "CHROMOSOME_POST_POLISHING", "{sample}.fasta.csv"), 
+        os.path.join(ISESCAN, "{sample}", "CHROMOSOME_POST_POLISHING", "{sample}.fasta.is.fna") 
     conda:
         os.path.join('..', 'envs','isescan.yaml')
     params:
@@ -51,7 +51,7 @@ rule aggr_isescan:
     input:
         expand(os.path.join(ISESCAN_PLAS, "{plasmids_sample}", "{plasmids_sample}.touch"), plasmids_sample = PLASMIDS_SAMPLES),
         expand(os.path.join(ISESCAN, "{sample}", "{sample}.touch"), sample = SAMPLES),
-        expand(os.path.join(ISESCAN, "{sample}", "CHROMOSOME", "{sample}.fasta.csv"), sample = SAMPLES)
+        expand(os.path.join(ISESCAN, "{sample}", "CHROMOSOME_POST_POLISHING", "{sample}.fasta.csv"), sample = SAMPLES)
     output:
         os.path.join(LOGS, "aggr_isescan.txt")
     threads:

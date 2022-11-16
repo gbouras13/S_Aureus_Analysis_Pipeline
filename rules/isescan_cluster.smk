@@ -1,7 +1,7 @@
 rule add_sample_to_fasta_header:
     """Run mmseqs."""
     input:
-        fasta = os.path.join(ISESCAN, "{sample}", "CHROMOSOME", "{sample}.fasta.is.fna")
+        fasta = os.path.join(ISESCAN, "{sample}", "CHROMOSOME_POST_POLISHING", "{sample}.fasta.is.fna")
     output:
         fasta = os.path.join(ISESCAN_CLEAN_FASTAS, "{sample}.fasta")
     conda:
