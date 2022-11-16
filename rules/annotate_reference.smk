@@ -1,4 +1,4 @@
-rule reference_prokka:
+rule reference_bakta:
     """Run prokka on reference."""
     input:
         os.path.join(REFERENCE,"NCTC_8325.fasta")
@@ -7,7 +7,7 @@ rule reference_prokka:
         os.path.join(BAKTA,"NCTC_8325","NCTC_8325.ffn"),
         os.path.join(BAKTA,"NCTC_8325","NCTC_8325.gbk")
     conda:
-        os.path.join('..', 'envs','prokka.yaml')
+        os.path.join('..', 'envs','bakta.yaml')
     params:
         BAKTA_DB,
         os.path.join(BAKTA, "NCTC_8325")
@@ -17,7 +17,7 @@ rule reference_prokka:
         mem_mb=BigJobMem
     shell:
         """
-        bakta --db {params[0]} --verbose --output {params[1]} --prefix NCTC_8325  --locus-tag {wildcards.sample} -f --threads {threads} {input[0]}
+        bakta --db {params[0]} --verbose --output {params[1]} --prefix NCTC_8325  --locus-tag NCTC_8325 -f --threads {threads} {input[0]}
         """
 
 rule move_gff_reference:

@@ -79,7 +79,7 @@ rule bakta_chromosome:
         os.path.join(BAKTA,"{sample}","{sample}.ffn"),
         os.path.join(BAKTA,"{sample}","{sample}.gbk")
     conda:
-        os.path.join('..', 'envs','prokka.yaml')
+        os.path.join('..', 'envs','bakta.yaml')
     params:
         BAKTA_DB,
         os.path.join(BAKTA, "{sample}")
