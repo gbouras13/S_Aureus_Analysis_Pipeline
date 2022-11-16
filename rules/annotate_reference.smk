@@ -5,7 +5,7 @@ rule reference_bakta:
     output:
         os.path.join(BAKTA,"NCTC_8325","NCTC_8325.gff3"),
         os.path.join(BAKTA,"NCTC_8325","NCTC_8325.ffn"),
-        os.path.join(BAKTA,"NCTC_8325","NCTC_8325.gbk")
+        os.path.join(BAKTA,"NCTC_8325","NCTC_8325.gbff")
     conda:
         os.path.join('..', 'envs','bakta.yaml')
     params:
@@ -38,7 +38,7 @@ rule aggr_prokka_reference:
     """Aggregate."""
     input:
         os.path.join(CHROMOSOME_GFFS,"NCTC_8325.gff" ),
-        os.path.join(BAKTA,"NCTC_8325","NCTC_8325.gbk")
+        os.path.join(BAKTA,"NCTC_8325","NCTC_8325.gbff")
     output:
         os.path.join(LOGS, "aggr_prokka_reference.txt")
     threads:

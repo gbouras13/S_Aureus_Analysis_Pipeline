@@ -77,7 +77,7 @@ rule bakta_chromosome:
     output:
         os.path.join(BAKTA,"{sample}","{sample}.gff3"),
         os.path.join(BAKTA,"{sample}","{sample}.ffn"),
-        os.path.join(BAKTA,"{sample}","{sample}.gbk")
+        os.path.join(BAKTA,"{sample}","{sample}.gbff")
     conda:
         os.path.join('..', 'envs','bakta.yaml')
     params:
@@ -109,7 +109,7 @@ rule move_gff_bakta_chromosome:
 
 rule move_gbk_bakta_chromosome:
     input:
-        os.path.join(BAKTA,"{sample}","{sample}.gbk")
+        os.path.join(BAKTA,"{sample}","{sample}.gbff")
     output:
         os.path.join(CHROMOSOME_GBKS,"{sample}.gbk")
     threads:
